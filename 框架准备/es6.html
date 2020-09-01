@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <input type="text" />
+  <button>搜索</button>
+  <div id="myDiv"></div>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script>
+    // const let 替代 var
+    // let num = 100
+    // num++
+    // console.log(num)
+    // for (let index = 0; index < 10; index++) {
+
+    // }
+    // console.log(index)
+    // let num = 10 > 5 ? 100 : 0
+    // console.log(num)
+
+    // const obj = {
+    //   username: '貂蝉',
+    //   userage: 18,
+    //   level: 10
+    // }
+    // const username = obj.username
+    // const userage = obj.userage
+    // 使用的时候 选择使用 username 变量 还是 obj.username
+    //顺序无所谓，名字必须相同，对上即可；没有对应的名字，obj对象中的属性就没有使用到。用冒号":"可以改名。
+    // const { username, userage: age, level } = obj
+    // console.log(username, age)
+
+    // const arr = [1, 2, 3, 4, 5]
+    // const [a, b, c] = arr
+    // console.log(a, b, c)
+
+    // const str = 'hello vue'
+    // const [d, e, f] = str
+    //def 的值分别是h,e,l; 所以字符串也是按着顺序来的
+    // console.log(d, e, f)
+
+    // function showInfo({ username, level }) {
+    //   // const { username, level } = obj
+    //   console.log(`该英雄的名称是${username}`, `等级${level}`)
+    // }
+    // showInfo(obj)
+
+    // 技巧: 实现变量调换
+    // let x = 1;
+    // let y = 2;
+    // [x, y] = [y, x];
+
+    //一共有两个类型：值的类型，引用类型。值的类型包括：null,undefined,数值,字符串,布尔。引用类型包括：对象object(function,array,Date)。
+    //值的类型保存与复制的是值本身，const在这里所定义的是数值型常量，存储的是值本身，常量值类型的 值 是不可以改变的，所以下边这个操作会出错。
+    // const num = 100
+    // num = num + 1
+
+    //对象类型保存与复制的是指向对象的一个指针，const在这里所定义的是对象，存储的是指向该对象的地址，对象类型的 地址不改变就行，所以下边这个操作不会出错。
+    //下边这个操作就是把 obj 对象里添加了一个属性，但是 obj 对象的地址没有改变.
+    // const obj = {
+    //   name: '吕布',
+    //   age: 28,
+    // }
+    // obj.level = 15
+
+    // 而下面这个操作将 obj 对象的地址改变了，所以会出错 Assignment to constant variable。
+    // // const obj = {
+    // //   name: '吕布',
+    // //   age: 28,
+    // // }
+    // //  obj = {
+    // //   name: '吕布',
+    // //   age: 28,
+    // // }
+
+
+
+    // active-class
+
+    // 字符串的方法
+    // indexOf(`任意字符串`，查看位置，从0开始，找不到返回-1)  charAt(数值型，是几就拿到字符串中第几个) includes startsWith endsWith trim(删除字符串头部和尾部的空格)  trimStart()，trimEnd() match(用正则表达式取字符串：如果正则表达式没写全局，取一个；写了全局，取多个)  matchAll(正则表达式不写全局，也可以取多个) ,padStart(),padEnd(),replace(替换)
+    // const str = ' hello 2020 '
+    // console.log(str.endsWith('2020'))
+
+    // console.log('x'.padStart(6, 'ab'))
+    //  loadsh 插件 包含了所有的基础数据的处理方式，使用时用 '-' 表示 (jquery 用 '$' 表示)
+
+    // 函数的扩展
+    // 函数的默认参数
+    // const fun = function (color = '黑色', bgColor = '红色') {
+    //   console.log('颜色:::', color)
+    //   console.log('背景色:::', bgColor)
+    //   // 修改高亮
+    // }
+    // fun('蓝色')
+    // const fun = function ({ color = '黑色', bgColor = '蓝色' }) {
+    //   console.log('颜色:::', color)
+    //   console.log('背景色:::', bgColor)
+    // }
+    // fun({ color: '粉色' })
+    // 剩余参数
+    // console.log([1, 2, 3, 4, 5, 6, 7, 8])
+    // function add(...xxxxx) {
+    //// 类数组(arguments) --->  数组([...arguments]) 
+    ////即：类数组 转变成 数组加上 '...' 即可
+    // console.log([...arguments])
+    // ;[...arguments].forEach(function (ele) {
+    //   console.log(ele)
+    // })
+
+    //   // 类数组
+    //   function add(){
+    //    [...arguments].forEach(function (ele) {
+    //    console.log(ele)
+    //    })
+    //    console.log([...arguments])
+    // }
+    //   add(1,2,3,4,5,6)
+
+
+    // console.log(xxxxx)
+    // }
+    // add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+    // function add(num1, num2) {
+    //   return num1 + num2
+    // }
+    // const add = (num1, num2) => num1 + num2
+
+    // 箭头函数定义只能变量式定义
+    // 箭头左边是 函数的参数部分 使用小括号包裹参数逗号拼接,当参数只有一个的时候可以省略小括号
+    // 箭头右边是 函数主体，使用花括号包裹，返回值设置依然使用 return。当函数不需要操作就设置返回值的话可以省略花括号和 return 直接写返回值即可
+    // const res = add(10, 20)
+    // console.log(res)
+
+    // const arr = [1, 1, 2, 3, 41, 21, 312, 3]
+    // 找到数组内第一个大于 20 的元素
+    // find  findeIndex
+    // const currentEle = arr.find(ele => ele > 20)
+    // console.log(currentEle)
+
+    // 函数内的 this 指向
+
+    // var username = 'window'
+    // function xx() {
+    //   var username = 'local'
+    //   console.log(this.username)
+    // }
+    // xx()
+
+    // const obj = {
+    //   name: 'lily',
+    //   say: () => {
+    //     console.log(this)
+    //     console.log(this.name)
+    //   },
+    // }
+    // obj.say()
+
+    // 数组
+
+    // const fun1 = function () {
+    //   console.log(arguments)
+    //   console.log(Array.from(arguments))
+    // }
+    // fun1(1, 2, 3, 4, 5, 6)
+    // console.log($('ul>li'))
+    // console.log(Array.from($('ul>li')))
+    // console.log(document.getElementsByTagName('li'))
+
+    // const obj = {
+    //   '0': 12312,
+    //   '1': 98768,
+    //   length: 2,
+    //   // 随便
+    // }
+    // [1,2,3,4,xxx:1221,xxxxx:1p39u]
+    // console.log(obj)
+    // console.log(Array.from(obj))
+
+    // Array.of(任意) 功能：将()中的东西转为数组
+    // Array.of(1,2,3) --> 值是 [1,2,3]
+    // const num1 = 11
+    // const num2 = 111
+    // const num3 = 111
+    // const num4 = 112
+    // console.log(Array.of(num1, num2, num3, num4))
+
+
+    // 多维数组   [1,2,[3,4]]
+    // 将多维数组转化成一维数组可以使用 flat 
+    // flatMap  先对数组进行 map 生成新的数组，然后对得到的数组进行一次 flat
+
+    // 扩展运算符
+    // const obj = {
+    //   name: '庄周',
+    //   age: 18,
+    // }
+    // 拷贝这个对象
+    // 1. for in 遍历对象，向新对象添加
+    // 2. Object.assign
+    // 3. jquery 的 extend
+    // 4. 扩展运算符
+    // const obj1 = { ...obj }
+    // obj1.hobby = '浪'
+    // console.log(obj, obj1)
+
+    // const arr = [1, 2, 3]
+    // const arr1 = [...arr]
+    // arr1.push(4)
+    // console.log(arr, arr1)
+
+    // function Hero(name, age) {
+    //   this.name = name
+    //   this.age = age
+    // }
+    // Hero.prototype.say = function () {
+    //   console.log('我是王者荣耀的英雄' + this.name)
+    // }
+    // const a = new Hero('妲己', 18)
+    // a.say()
+    // const b = { ...a }
+    // b.say()
+    // 对象的扩展
+    // const username = '哈哈'
+    // const userage = 20
+    // const obj = {
+    //   username,
+    //   // 当对象的属性名和作为该属性的属性值的变量名相同时
+    //   userage,
+    //   // 函数可以省略 function，箭头函数不可以再简写了。(箭头函数：say()=>{})
+    //   say() {},
+    // }
+    // console.log(obj)
+
+    // const obj1 = {
+    //   xx: 100,
+    //   xxx: 1,
+    //   xxxxx: 10000,
+    // }
+    // const a = 'xx'
+    // obj1[a+'x']
+    // Object.keys(对象名) 返回该对象下由属性名组成的数组
+    // console.log(Object.keys(obj1))
+
+    // 第七种数据类型 symbol
+    // symbol 创建的对象是独一无二的
+    // let s1 = Symbol('foo')
+    // let s2 = Symbol('foo')
+    // console.log(s1 === s2)-->false
+
+    // set 数据结构
+
+    // 创建 参数是数组
+    // const ary = new Set([1, 2, 131, 312, 1, 2, 131])
+    // console.log(ary)
+    // 属性
+    // size
+    // console.log(ary.size)
+    // 方法
+    // add() 向set数据内添加一个(只能添加一个)不重复的成员,返回数据本身
+    // ary.add(1000)
+    // console.log(ary)
+    // delete() 删除某个值，返回一个布尔值，表示删除是否成功
+    //  has() 查看该值是否为Set的成员，返回一个布尔值
+    // clear() 清除所有成员，没有返回值
+    // 如何将 set 数据转化成数组
+    // console.log([...ary])
+    // 可以实现数组去重
+    // const newArr = [1, 1231, 23, 12, 31, 3, 1, 12, 31, 23, 12]
+    // console.log([...new Set(newArr)])
+    // 搜索历史展示
+    // 北京   南京   北京
+    // const arr = new Set()
+    // 输入地址之后点击搜索，当我下次进入搜索界面的时候以前的搜索内容还在
+    // const arr = [1, 2]
+    // const ary1 = new WeakSet([arr, arr])
+    // console.log(ary1)
+    // map
+    // const data = {}
+    // const element = document.getElementById('myDiv')
+    // console.log(element)
+    // data[element] = 'metadata'
+    // console.log(data)
+    // class
+    // 构造函数和原型
+    // function Hero(name, age) {
+    //   this.name = name
+    //   this.age = age
+    // }
+    // Hero.prototype.say = function () {
+    //   console.log('我是王者荣耀的英雄' + this.name)
+    // }
+    // class Hero {
+    //   // 类的花括号内默认一般只写方法，而且方法之间不需要逗号
+    //   // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
+    //   // constructor 函数当 创建实例化类的时候自动触发
+    //   // 如果不需要 constructor 可以省略，如果不写 constructor ,父类中也会有 constructor ,只不过是空的(即：constructor(){})，也就是说，父类会默认添加 constructor 方法。
+    //   constructor(name, age) {
+    //     this.name = name
+    //     this.age = age
+    //   }
+    //   // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
+    // 箭头函数中的 this 指向的是类Hero
+    //   say = () => {
+    //     console.log('我是王者荣耀的英雄' + this.name)
+    //   }
+    // }
+    // const a = new Hero('牛', 20)
+    // const b = new Hero('小乔', 18)
+    // console.log(a)
+    // console.log(b)
+    // a.say()
+    // 继承
+    // class CarryHero extends Hero {
+    //   constructor(name, age) {
+    //     super(name, age)
+    //     // super 调用了才真正实现了继承
+    //   }
+    // }
+    // const c = new CarryHero('赵云', 19)
+    // console.log(c)
+
+    // 模块   ----  webpack
+    // promise 异步解决方案   ajax
+
+    // 一些高级的 js 语法浏览器不支持
+    // 用一些工具去编译es6 ---> es3  5
+    // webpack
+  </script>
+</body>
+
+</html>
